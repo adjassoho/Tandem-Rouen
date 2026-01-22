@@ -9,7 +9,7 @@ export default function ExperiencePage() {
             <ThemeSetter theme="copper" />
 
             {/* Section 1: La Philosophie (Hero) */}
-            <section className="relative h-[90vh] w-full flex items-center justify-center overflow-hidden">
+            <section className="relative h-[90vh] w-full flex items-center justify-center overflow-hidden pt-24">
                 <div className="absolute inset-0 z-0">
                     <div className="h-full w-full bg-cover bg-center bg-fixed opacity-60 grayscale brightness-75 contrast-125"
                         style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuBaD7GX6IDQcpE6dTPqWcKlQ5cJgPJcKN_3jWq6qAmaWzlf09OxVzENMPLKLSkd6g1dUzu1CWWmO3by9sg4FXe5cAIjWd0IuEFrBcA8PC1Dl1M0O2vcJrHtA23mFS3gIaWre2D2YNy61Y7nywal9YtkX51-fnBnH6aGwDCLqr2PThsVBH-ldTfy1yTuvWkMgtEoxHLOcmLlPSD3Os_1pKR4Xi8UusGtou1XaZSH36NxUoVAeBEG0ZB-8d3prCNF8HWtFR0K0_216Vg')" }}>
@@ -82,7 +82,7 @@ export default function ExperiencePage() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
                         {/* Large Feature Item */}
                         <ScrollReveal animation="slide-left" delay={100}>
-                            <div className="md:col-span-2 row-span-2 relative rounded-lg overflow-hidden group">
+                            <div className="md:col-span-2 row-span-2 relative rounded-lg overflow-hidden group h-full">
                             <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                                 style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuBxF_zxxpdJM5mMWU8rUtgCTydXFUiZNYlM78JrpLmDx-laT9Sc3u2-Qrp7fPqMZCC2YkZRf2iLIS_5texy7w1dyTEtcnLIfLG6zwPkA5zZBQHqO9s_W5fvJY3T8qRs6B0zfzLXK344g-G5Lh7QAF8AU2QOqKZTn4V8JW3sciYU3UGnRlLJYineMeWMhUWQ7gOapgWvbsGIHwHow2hAyV-WyDzpv57Q5ye2_bzYPKAeeWkuSyKY64L0BrYrkGW0K6ShKdvVLOzIdh0')" }}>
                             </div>
@@ -95,7 +95,7 @@ export default function ExperiencePage() {
                         </ScrollReveal>
                         {/* Tall Item */}
                         <ScrollReveal animation="slide-right" delay={200}>
-                            <div className="md:col-span-1 row-span-2 relative rounded-lg overflow-hidden group">
+                            <div className="md:col-span-1 row-span-2 relative rounded-lg overflow-hidden group h-full">
                             <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                                 style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuCiAh8CTeiGG49II8ktFqIbXjuiP9YfiAmVxg-JMmQYyvTx_HAIaXt094SNVP1_BdbHK2XolocCKRO_1ZtiSrjAFPf5gLFcLkCSF0QlBMnITlvTDefcGNi_ExY3Y4qYTzeBvk6g3jw4ZG1jaVYput-DmwRsSyzF9Khw0a311AozP4LvL8Ga1t3FupTqSr1BgoMnSxh_odt2Mx8bsKkMUJ4rMzR--541SnoiKUlSPbeLKaqeQu4PYTkQI3t2UaYM1YHKCBW6c7it7YE')" }}>
                             </div>
@@ -104,7 +104,7 @@ export default function ExperiencePage() {
                         </ScrollReveal>
                         {/* Standard Item 1 */}
                         <ScrollReveal animation="scale" delay={300}>
-                            <div className="relative rounded-lg overflow-hidden group">
+                            <div className="relative rounded-lg overflow-hidden group h-full">
                             <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                                 style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuD0bZXvfcXp0VmSFor-MeW5PGVrqX6Gq4JXcx1YlTe9dhcsdzt0NmQyMJ4PTjVcGGl_UNWRITZ9kZ7_9yoiccRqEp2AWoLwTv6VmvXzQbLnYQG3XMBFTmnnT5kqMWE5I3Vd8hjQYhyCbhLBIEMiBtVbnLd20VXk5xcWtYyJaj4BYPM16ckRG5VOZ0fel830I01vvIbxmjixQ0Tvbi3SR6VmT77qnWhvJ2Qs2s3EiUDQL_ZHDTKG-FYKKU_atCB2PRikrMEjxXm5evw')" }}>
                             </div>
@@ -112,7 +112,7 @@ export default function ExperiencePage() {
                         </ScrollReveal>
                         {/* Standard Item 2 */}
                         <ScrollReveal animation="slide-up" delay={400}>
-                            <div className="md:col-span-2 relative rounded-lg overflow-hidden group">
+                            <div className="md:col-span-2 relative rounded-lg overflow-hidden group h-full">
                             <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                                 style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuCu2vG5mgJw0PgqipI19nV31nr1uVh1t2WQIQAzm8j794KXA6rKYQs8p4iepLO56p69ITeNVMWSJiw5dwDfV4XAjRZbkwJzRTaP2_PlhvoGlJeTKhA0KeHRkdlu5qboquwAe2da1gVPxROznYFvB2p2u0_C7M1mf2cDEqLjvslad0l1JELPTYYmK0ebmeWxff9K6sZ_a1Fmw0aRuApCp_dQBJusrl-AIqtgsBHpitNAHJt_dajxO9hUlmQPwED3hwU5fAX1VNJYqMA')" }}>
                             </div>

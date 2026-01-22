@@ -14,7 +14,7 @@ export default function ProductionPage() {
 
             {/* Hero Section */}
             <ScrollReveal animation="fade">
-                <section className="relative px-6 py-12 md:py-16 lg:px-20 max-w-[1440px] mx-auto w-full flex flex-col items-center text-center">
+                <section className="relative px-6 py-12 md:py-16 lg:px-20 max-w-[1440px] mx-auto w-full flex flex-col items-center text-center pt-32">
                 <div className="max-w-3xl space-y-6">
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] bg-gradient-to-br from-white via-white to-gray-500 bg-clip-text text-transparent font-display">
                         Au Cœur du <span className="text-primary">Terroir Normand</span>

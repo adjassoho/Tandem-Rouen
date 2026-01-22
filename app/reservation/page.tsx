@@ -16,7 +16,7 @@ export default function ReservationPage() {
         <>
             <ThemeSetter theme="copper" />
 
-            <div className="flex flex-col lg:flex-row w-full max-w-[1600px] mx-auto min-h-[calc(100vh-80px)]">
+            <div className="flex flex-col lg:flex-row w-full max-w-[1600px] mx-auto min-h-[calc(100vh-80px)] pt-24">
                 {/* LEFT PANEL: Booking Form */}
                 <section className="flex-1 p-6 lg:p-12 lg:overflow-y-auto border-r border-[#392f28]">
                     <div className="max-w-xl mx-auto flex flex-col gap-10">

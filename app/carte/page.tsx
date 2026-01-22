@@ -7,7 +7,7 @@ export default function CartePage() {
         <>
             <div className="fixed inset-0 z-0 pointer-events-none opacity-5 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-700 via-background-dark to-black"></div>
 
-            <main className="relative z-10 flex-grow max-w-5xl mx-auto w-full px-6 py-12">
+            <main className="relative z-10 flex-grow max-w-5xl mx-auto w-full px-6 py-12 pt-32">
                 {/* Page Header */}
                 <ScrollReveal animation="fade">
                     <div className="mb-12 text-center md:text-left">

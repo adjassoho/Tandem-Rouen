@@ -11,8 +11,14 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    // If we wanted to use next/image, we would add domains here:
-    // domains: ['lh3.googleusercontent.com', 'api.mapbox.com', 'fonts.gstatic.com'],
+    // Allow external images from Google
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+        pathname: '/aida-public/**',
+      },
+    ],
     unoptimized: true, // Allow external images easily
   }
 };
