@@ -3,8 +3,5 @@
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "framework": "nextjs",
-  "outputDirectory": ".next",
-  "projectSettings": {
-    "name": "tandem-rouen"
-  }
+  "outputDirectory": ".next"
 }
