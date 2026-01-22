@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Réservation Intelligente - Tandem Rouen</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;family=Noto+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d46211", // Copper
+                        "gold": "#D4AF37", // Gold accent
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#181411", // Anthracite
+                        "background-card": "#231e19",
+                        "secondary-text": "#b9a89d",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    boxShadow: {
+                        'glow': '0 0 15px -3px rgba(212, 98, 17, 0.3)',
+                        'gold-glow': '0 0 15px -3px rgba(212, 175, 55, 0.2)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #181411; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #392f28; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d46211; 
+        }
+
+        .table-seat {
+            transition: all 0.3s ease;
+        }
+        .table-seat:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(212, 98, 17, 0.4);
+            border-color: #d46211;
+        }
+        .table-seat.selected {
+            background-color: rgba(212, 98, 17, 0.2);
+            border-color: #d46211;
+            box-shadow: 0 0 15px rgba(212, 98, 17, 0.5);
+        }
+        .table-seat.suggested {
+            border-color: #D4AF37;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+            animation: pulse-gold 2s infinite;
+        }
+
+        @keyframes pulse-gold {
+            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-white font-display overflow-x-hidden min-h-screen flex flex-col">
+<!-- Header -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#392f28] px-6 lg:px-10 py-4 bg-[#181411]/90 backdrop-blur-md sticky top-0 z-50">
+<div class="flex items-center gap-4 text-white">
+<div class="size-6 text-primary">
+<span class="material-symbols-outlined text-3xl">restaurant</span>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-[0.1em]">TANDEM</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8 items-center">
+<div class="flex items-center gap-9">
+<a class="text-secondary-text hover:text-white transition-colors text-sm font-medium leading-normal" href="#">La Carte</a>
+<a class="text-secondary-text hover:text-white transition-colors text-sm font-medium leading-normal" href="#">L'Expérience</a>
+<a class="text-secondary-text hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Producteurs</a>
+<a class="text-primary text-sm font-bold leading-normal border-b-2 border-primary pb-1" href="#">Réserver</a>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-[#392f28]" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDCjpWnqZhzDkHcGJg2pt1TIlm-Fcj3FmmPTmKcLJCv5QckxQSDrlBB9jAmD2_9lh0UIaR2VKO6HuPkKb8LQ7jZ7zpeoZcK4cW9bIc47cBYL0o_FKoSVbpr-RIdEk1ok1b4lUOaIqIiJNUfXBgIsH6wR12r6MOTjEHU5jVOgw9y8e2FXJCD49akq3Tqf1PdZAk5GKlGJOqQaTT-Ubq6iO5J0L3XwAN2zgUyS6_D0B0gy3YVc81nvWRGka92DWENEXfmgrbPvoGeWS8");'></div>
+</div>
+<button class="md:hidden text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col lg:flex-row w-full max-w-[1600px] mx-auto">
+<!-- LEFT PANEL: Booking Form -->
+<section class="flex-1 p-6 lg:p-12 lg:overflow-y-auto lg:h-[calc(100vh-80px)] border-r border-[#392f28]">
+<div class="max-w-xl mx-auto flex flex-col gap-10">
+<!-- Heading -->
+<div class="flex flex-col gap-3">
+<p class="text-white text-4xl lg:text-5xl font-black leading-tight tracking-tight">Votre Table vous attend</p>
+<p class="text-secondary-text text-lg font-normal leading-normal">Réservez votre expérience culinaire chez Tandem.</p>
+</div>
+<!-- Step 1: Guests -->
+<div class="flex flex-col gap-4">
+<h3 class="text-white text-lg font-bold flex items-center gap-2">
+<span class="bg-[#392f28] text-secondary-text text-xs px-2 py-0.5 rounded">01</span> 
+                        Nombre de convives
+                    </h3>
+<div class="flex gap-3 flex-wrap">
+<button class="flex h-10 min-w-[3rem] items-center justify-center rounded-lg border border-[#392f28] hover:border-primary hover:bg-[#2a241f] transition-colors focus:bg-primary focus:border-primary focus:text-white bg-[#181411]">
+<span class="text-sm font-medium">1</span>
+</button>
+<button class="flex h-10 min-w-[3rem] items-center justify-center rounded-lg border border-primary bg-primary/20 text-primary hover:bg-primary hover:text-white transition-colors shadow-glow">
+<span class="text-sm font-bold">2</span>
+</button>
+<button class="flex h-10 min-w-[3rem] items-center justify-center rounded-lg border border-[#392f28] hover:border-primary hover:bg-[#2a241f] transition-colors bg-[#181411]">
+<span class="text-sm font-medium">3</span>
+</button>
+<button class="flex h-10 min-w-[3rem] items-center justify-center rounded-lg border border-[#392f28] hover:border-primary hover:bg-[#2a241f] transition-colors bg-[#181411]">
+<span class="text-sm font-medium">4</span>
+</button>
+<button class="flex h-10 min-w-[3rem] items-center justify-center rounded-lg border border-[#392f28] hover:border-primary hover:bg-[#2a241f] transition-colors bg-[#181411]">
+<span class="text-sm font-medium">5</span>
+</button>
+<button class="flex h-10 min-w-[3rem] items-center justify-center rounded-lg border border-[#392f28] hover:border-primary hover:bg-[#2a241f] transition-colors bg-[#181411]">
+<span class="text-sm font-medium">6</span>
+</button>
+<button class="flex h-10 px-4 items-center justify-center rounded-lg border border-[#392f28] hover:border-primary hover:bg-[#2a241f] transition-colors bg-[#181411]">
+<span class="text-sm font-medium">8+</span>
+</button>
+</div>
+</div>
+<!-- Step 2: Date & Time -->
+<div class="flex flex-col gap-6">
+<h3 class="text-white text-lg font-bold flex items-center gap-2">
+<span class="bg-[#392f28] text-secondary-text text-xs px-2 py-0.5 rounded">02</span> 
+                        Date &amp; Heure
+                    </h3>
+<div class="bg-background-card rounded-xl border border-[#392f28] p-4">
+<!-- Calendar Header -->
+<div class="flex items-center justify-between mb-4 px-2">
+<button class="p-2 hover:bg-[#392f28] rounded-full transition-colors text-white">
+<span class="material-symbols-outlined text-sm">arrow_back_ios_new</span>
+</button>
+<span class="text-white text-base font-bold">Octobre 2023</span>
+<button class="p-2 hover:bg-[#392f28] rounded-full transition-colors text-white">
+<span class="material-symbols-outlined text-sm">arrow_forward_ios</span>
+</button>
+</div>
+<!-- Days Header -->
+<div class="grid grid-cols-7 mb-2 text-center">
+<span class="text-xs font-bold text-secondary-text py-2">D</span>
+<span class="text-xs font-bold text-secondary-text py-2">L</span>
+<span class="text-xs font-bold text-secondary-text py-2">M</span>
+<span class="text-xs font-bold text-secondary-text py-2">M</span>
+<span class="text-xs font-bold text-secondary-text py-2">J</span>
+<span class="text-xs font-bold text-secondary-text py-2">V</span>
+<span class="text-xs font-bold text-secondary-text py-2">S</span>
+</div>
+<!-- Days Grid -->
+<div class="grid grid-cols-7 gap-y-2 gap-x-1">
+<!-- Empty slots for alignment if needed -->
+<div class="aspect-square"></div>
+<div class="aspect-square"></div>
+<div class="aspect-square"></div>
+<!-- Days -->
+<button class="aspect-square flex items-center justify-center rounded-full text-sm text-secondary-text hover:bg-[#392f28] hover:text-white transition-colors">1</button>
+<button class="aspect-square flex items-center justify-center rounded-full text-sm text-secondary-text hover:bg-[#392f28] hover:text-white transition-colors">2</button>
+<button class="aspect-square flex items-center justify-center rounded-full text-sm text-secondary-text hover:bg-[#392f28] hover:text-white transition-colors">3</button>
+<button class="aspect-square flex items-center justify-center rounded-full text-sm text-secondary-text hover:bg-[#392f28] hover:text-white transition-colors">4</button>
+<button class="aspect-square flex items-center justify-center rounded-full text-sm bg-primary text-white font-bold shadow-glow">5</button>
+<button class="aspect-square flex items-center justify-center rounded-full text-sm text-white hover:bg-[#392f28] transition-colors">6</button>
+<button class="aspect-square flex items-center justify-center rounded-full text-sm text-white hover:bg-[#392f28] transition-colors">7</button>
+<button class="aspect-square flex items-center justify-center rounded-full text-sm text-white hover:bg-[#392f28] transition-colors">8</button>
+<!-- ... more days ... -->
+</div>
+</div>
+<!-- Time Slots -->
+<div class="flex flex-col gap-2">
+<label class="text-sm text-secondary-text font-medium">Créneaux disponibles</label>
+<div class="flex gap-3 flex-wrap">
+<button class="px-4 py-2 rounded-lg border border-[#392f28] text-secondary-text opacity-50 cursor-not-allowed text-sm">19:00</button>
+<button class="px-4 py-2 rounded-lg border border-gold/40 text-white bg-gold/10 hover:bg-gold/20 transition-colors text-sm font-medium flex items-center gap-1 group">
+                                19:30
+                                <span class="material-symbols-outlined text-[10px] text-gold group-hover:animate-ping">circle</span>
+</button>
+<button class="px-4 py-2 rounded-lg border border-primary bg-primary text-white text-sm font-bold shadow-glow">20:00</button>
+<button class="px-4 py-2 rounded-lg border border-gold/40 text-white bg-gold/10 hover:bg-gold/20 transition-colors text-sm font-medium flex items-center gap-1 group">
+                                20:30
+                                <span class="material-symbols-outlined text-[10px] text-gold group-hover:animate-ping">circle</span>
+</button>
+<button class="px-4 py-2 rounded-lg border border-gold/40 text-white bg-gold/10 hover:bg-gold/20 transition-colors text-sm font-medium flex items-center gap-1 group">
+                                21:00
+                                <span class="material-symbols-outlined text-[10px] text-gold group-hover:animate-ping">circle</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Step 3: Preferences -->
+<div class="flex flex-col gap-4">
+<h3 class="text-white text-lg font-bold flex items-center gap-2">
+<span class="bg-[#392f28] text-secondary-text text-xs px-2 py-0.5 rounded">03</span> 
+                        Préférences
+                    </h3>
+<textarea class="w-full bg-[#231e19] border border-[#392f28] rounded-xl p-4 text-white placeholder-secondary-text focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all resize-none h-32" placeholder="Allergies, occasion spéciale (anniversaire, demande en mariage...), préférence de placement..."></textarea>
+</div>
+<!-- Submit Area -->
+<div class="pt-4 flex flex-col gap-4">
+<button class="w-full bg-primary hover:bg-[#b8530d] text-white font-bold text-lg py-4 rounded-xl shadow-glow transition-all transform active:scale-[0.99] flex items-center justify-center gap-2">
+<span>Confirmer ma réservation</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<div class="flex items-center justify-center gap-2 text-secondary-text text-xs">
+<span class="material-symbols-outlined text-primary text-sm">verified_user</span>
+                        Confirmation instantanée par SMS &amp; Email
+                    </div>
+</div>
+</div>
+</section>
+<!-- RIGHT PANEL: Visual & AI -->
+<section class="lg:w-1/2 xl:w-[55%] bg-[#1a1714] relative flex flex-col h-[500px] lg:h-auto border-t lg:border-t-0 border-[#392f28]">
+<!-- AI Assistant Banner - Floating over map -->
+<div class="absolute top-6 left-6 right-6 z-20">
+<div class="bg-gradient-to-r from-[#231e19] to-[#181411] border border-gold/30 rounded-xl p-5 shadow-gold-glow flex items-start gap-4 backdrop-blur-md">
+<div class="bg-gold/20 p-2 rounded-lg text-gold shrink-0">
+<span class="material-symbols-outlined">auto_awesome</span>
+</div>
+<div>
+<p class="text-gold text-xs font-bold uppercase tracking-wider mb-1">Assistant Réservation IA</p>
+<p class="text-white text-sm leading-relaxed">
+                            "Je vous suggère la <span class="text-gold font-bold cursor-pointer underline decoration-dotted underline-offset-4">Table 12</span>, près de la fenêtre, pour une ambiance plus intime ce soir."
+                        </p>
+</div>
+</div>
+</div>
+<!-- Floor Plan (Interactive CSS Map) -->
+<div class="w-full h-full relative overflow-hidden flex items-center justify-center bg-[url('https://www.transparenttextures.com/patterns/dark-leather.png')]">
+<!-- Background decoration mimicking floor -->
+<div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#392f28 1px, transparent 1px); background-size: 20px 20px;"></div>
+<!-- Restaurant Walls/Layout Container -->
+<div class="relative w-[80%] h-[80%] border-4 border-[#392f28] rounded-2xl bg-[#181411] shadow-2xl overflow-hidden p-8">
+<!-- Windows (Top) -->
+<div class="absolute top-0 left-1/4 right-1/4 h-2 bg-[#2a241f] border-b border-[#392f28] flex justify-center items-center">
+<span class="text-[8px] text-secondary-text uppercase tracking-widest -mt-4">Vue Seine</span>
+</div>
+<!-- Kitchen Area (Bottom) -->
+<div class="absolute bottom-0 left-0 right-0 h-16 bg-[#1f1a16] border-t border-[#392f28] flex items-center justify-center">
+<span class="text-[#392f28] font-black uppercase text-2xl opacity-20 tracking-widest">CUISINE</span>
+</div>
+<!-- Entrance (Right) -->
+<div class="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-20 bg-[#1f1a16] border-l border-[#392f28] flex items-center justify-center">
+<span class="text-[8px] text-secondary-text -rotate-90">Entrée</span>
+</div>
+<!-- TABLES LAYOUT -->
+<!-- Table 1 (Top Left) -->
+<div class="absolute top-10 left-10 flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-16 h-16 rounded-full border-2 border-[#392f28] bg-[#231e19] flex items-center justify-center table-seat">
+<span class="text-secondary-text font-bold text-xs">01</span>
+</div>
+<div class="flex gap-8 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-8 justify-between pointer-events-none">
+<div class="w-4 h-8 bg-[#392f28] rounded-l-full opacity-50"></div>
+<div class="w-4 h-8 bg-[#392f28] rounded-r-full opacity-50"></div>
+</div>
+</div>
+<!-- Table 12 (Suggested - Top Center) -->
+<div class="absolute top-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 group cursor-pointer z-10">
+<div class="relative">
+<!-- Tooltip -->
+<div class="absolute -top-12 left-1/2 -translate-x-1/2 bg-gold text-black text-[10px] font-bold px-2 py-1 rounded shadow-lg whitespace-nowrap opacity-100 animate-bounce">
+                                Suggérée pour vous
+                                <div class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-gold rotate-45"></div>
+</div>
+<div class="w-20 h-20 rounded-lg border-2 border-gold bg-[#231e19] flex items-center justify-center table-seat suggested selected">
+<span class="text-gold font-bold text-sm">12</span>
+</div>
+</div>
+<!-- Chairs -->
+<div class="absolute -left-5 top-1/2 -translate-y-1/2 w-4 h-10 bg-gold/30 rounded-l-md"></div>
+<div class="absolute -right-5 top-1/2 -translate-y-1/2 w-4 h-10 bg-gold/30 rounded-r-md"></div>
+</div>
+<!-- Table 3 (Top Right) -->
+<div class="absolute top-10 right-16 flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-16 h-16 rounded-full border-2 border-[#392f28] bg-[#231e19] flex items-center justify-center table-seat">
+<span class="text-secondary-text font-bold text-xs">03</span>
+</div>
+</div>
+<!-- Table 4 (Center Left) -->
+<div class="absolute top-1/2 left-12 -translate-y-1/2 flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-24 h-12 rounded-lg border-2 border-[#392f28] bg-[#231e19] flex items-center justify-center table-seat">
+<span class="text-secondary-text font-bold text-xs">04</span>
+</div>
+</div>
+<!-- Table 5 (Center Right) -->
+<div class="absolute top-1/2 right-12 -translate-y-1/2 flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-12 h-12 rounded-lg border-2 border-[#392f28] bg-[#231e19] flex items-center justify-center table-seat">
+<span class="text-secondary-text font-bold text-xs">05</span>
+</div>
+</div>
+<!-- Table 6 (Bottom Left) -->
+<div class="absolute bottom-24 left-16 flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-14 h-14 rounded-full border-2 border-[#392f28] bg-[#231e19] flex items-center justify-center table-seat">
+<span class="text-secondary-text font-bold text-xs">06</span>
+</div>
+</div>
+<!-- Table 7 (Bottom Center) -->
+<div class="absolute bottom-24 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-28 h-14 rounded-lg border-2 border-[#392f28] bg-[#231e19] flex items-center justify-center table-seat">
+<span class="text-secondary-text font-bold text-xs">Grande Table 07</span>
+</div>
+</div>
+</div>
+<!-- Legend -->
+<div class="absolute bottom-4 left-6 right-6 flex justify-center gap-6">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-[#231e19] border border-[#392f28]"></div>
+<span class="text-[10px] text-secondary-text uppercase">Disponible</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary/20 border border-primary"></div>
+<span class="text-[10px] text-primary uppercase">Sélection</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-gold/20 border border-gold"></div>
+<span class="text-[10px] text-gold uppercase">Suggestion IA</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Simple Footer -->
+<footer class="border-t border-[#392f28] bg-[#181411] py-8 px-6 lg:px-10 mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-secondary-text">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<span>12 Rue de la République, 76000 Rouen</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">call</span>
+<span>02 35 00 00 00</span>
+</div>
+<div class="flex gap-4">
+<a class="hover:text-primary transition-colors" href="#">Mentions Légales</a>
+<a class="hover:text-primary transition-colors" href="#">Confidentialité</a>
+</div>
+</div>
+</footer>
+<script>
+        // Simple script to handle interactivity for the demo
+        document.querySelectorAll('.table-seat').forEach(table => {
+            table.addEventListener('click', function() {
+                // Remove selected class from all
+                document.querySelectorAll('.table-seat').forEach(t => {
+                    t.classList.remove('selected', 'bg-primary/20', 'border-primary');
+                    if(!t.classList.contains('suggested')) {
+                        t.style.borderColor = '#392f28';
+                        t.style.backgroundColor = '#231e19';
+                    }
+                });
+
+                // Add to clicked
+                this.classList.add('selected');
+                
+                // If it's the suggested one, keep gold theme but brighter
+                if(this.classList.contains('suggested')) {
+                    // handled by css
+                } else {
+                    this.style.borderColor = '#d46211';
+                    this.style.backgroundColor = 'rgba(212, 98, 17, 0.2)';
+                }
+            });
+        });
+    </script>
+</body></html>

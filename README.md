@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Restaurant Tandem - Rouen
 
-## Getting Started
+Site web moderne pour le restaurant Tandem à Rouen, offrant une expérience culinaire augmentée par l'IA.
 
-First, run the development server:
+## 🚀 Technologies
+
+- **Next.js 16** - Framework React avec Turbopack
+- **TypeScript** - Typage statique
+- **Tailwind CSS** - Styling moderne et responsive
+- **Animations** - ScrollReveal pour des animations fluides au scroll
+
+## ✨ Fonctionnalités
+
+- 🎨 Design moderne et élégant avec thème cuivre
+- 📱 Entièrement responsive (mobile, tablette, desktop)
+- ✨ Animations fluides au scroll
+- 🤖 Suggestions IA pour les accords mets-vins
+- 🗺️ Carte interactive des producteurs locaux
+- 📅 Système de réservation avec sélection de table
+- 🍷 Carte des vins et menu détaillé
+
+## 📦 Installation
 
 ```bash
+# Installer les dépendances
+npm install
+
+# Lancer le serveur de développement
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Builder pour la production
+npm run build
+
+# Lancer en production
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🌐 Déploiement
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Le site est configuré pour être déployé automatiquement sur Vercel :
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Connectez votre dépôt GitHub à Vercel
+2. Vercel détectera automatiquement Next.js
+3. Le déploiement se fera automatiquement à chaque push sur `main`
 
-## Learn More
+## 📄 Structure du projet
 
-To learn more about Next.js, take a look at the following resources:
+```
+├── app/                    # Pages Next.js (App Router)
+│   ├── page.tsx           # Page d'accueil
+│   ├── carte/             # Page carte
+│   ├── experience/        # Page expérience
+│   ├── production/        # Page producteurs
+│   └── reservation/       # Page réservation
+├── components/            # Composants réutilisables
+│   ├── ui/               # Composants UI (Button, ScrollReveal, etc.)
+│   └── reservation/      # Composants spécifiques réservation
+├── lib/                  # Utilitaires
+├── public/               # Assets statiques
+└── legacy_html/          # Anciens fichiers HTML (référence)
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎨 Thèmes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Le site utilise un système de thème avec deux variantes :
+- **Thème par défaut** : Or/Jaune (#f2b90d)
+- **Thème cuivre** : Orange cuivré (#d46211)
 
-## Deploy on Vercel
+## 📱 Pages
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Accueil** : Présentation du restaurant et suggestion du chef
+- **Carte** : Menu complet avec accords vins IA
+- **Expérience** : Philosophie et équipe du restaurant
+- **Production** : Carte interactive des producteurs locaux
+- **Réservation** : Système de réservation avec carte des tables
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🤝 Contribution
+
+Ce projet est développé pour le Restaurant Tandem à Rouen.
+
+## 📝 License
+
+Tous droits réservés - Restaurant Tandem © 2026

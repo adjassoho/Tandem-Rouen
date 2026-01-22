@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Producteurs &amp; Terroir - Tandem Rouen</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;family=Noto+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#d46211",
+              "background-light": "#f8f7f6",
+              "background-dark": "#1a1a1a", // Updated to match user request for Anthracite
+            },
+            fontFamily: {
+              "display": ["Plus Jakarta Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            backgroundImage: {
+                'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        /* Custom map pin pulse animation since standard animate-ping might be too fast/large */
+        @keyframes subtle-pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+        }
+        .animate-subtle-pulse {
+            animation: subtle-pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+</head>
+<body class="bg-[#1a1a1a] text-white font-display overflow-x-hidden selection:bg-primary selection:text-white">
+<!-- Header -->
+<header class="fixed top-0 z-50 w-full border-b border-[#392f28]/50 bg-[#1a1a1a]/90 backdrop-blur-md transition-all duration-200">
+<div class="px-6 lg:px-12 py-4 flex items-center justify-between max-w-[1440px] mx-auto">
+<div class="flex items-center gap-3 group cursor-pointer">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined !text-[32px]">local_dining</span>
+</div>
+<h2 class="text-white text-xl font-bold tracking-[0.05em] uppercase">Tandem</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8 lg:gap-12">
+<a class="text-gray-400 hover:text-white text-sm font-medium transition-colors" href="#">La Carte</a>
+<a class="text-gray-400 hover:text-white text-sm font-medium transition-colors" href="#">L'Expérience</a>
+<a class="text-primary text-sm font-bold relative after:content-[''] after:absolute after:-bottom-6 after:left-1/2 after:-translate-x-1/2 after:w-1 after:h-1 after:bg-primary after:rounded-full" href="#">Producteurs</a>
+</nav>
+<button class="bg-primary hover:bg-primary/90 text-white text-sm font-bold px-6 py-2.5 rounded-lg transition-transform active:scale-95 shadow-[0_0_15px_rgba(212,98,17,0.3)]">
+                Réserver
+            </button>
+</div>
+</header>
+<!-- Main Layout -->
+<main class="relative flex flex-col min-h-screen pt-20">
+<!-- Hero Section -->
+<section class="relative px-6 py-12 md:py-16 lg:px-20 max-w-[1440px] mx-auto w-full flex flex-col items-center text-center">
+<div class="max-w-3xl space-y-6">
+<h1 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] bg-gradient-to-br from-white via-white to-gray-500 bg-clip-text text-transparent">
+                    Au Cœur du <span class="text-primary">Terroir Normand</span>
+</h1>
+<p class="text-gray-400 text-lg leading-relaxed max-w-2xl mx-auto">
+                    Une cuisine sincère commence par des produits d'exception. Nous tissons des liens directs avec les artisans qui façonnent l'identité culinaire de Tandem, privilégiant le circuit court et le respect des saisons.
+                </p>
+<!-- AI Traceability Badge -->
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/20 bg-primary/5 shadow-lg backdrop-blur-sm mt-4">
+<span class="material-symbols-outlined text-primary !text-[18px]">verified_user</span>
+<span class="text-primary/90 text-xs font-bold uppercase tracking-wider">Traçabilité IA : 100% Local &amp; Vérifié</span>
+</div>
+</div>
+</section>
+<!-- Interactive Map Section -->
+<section class="flex-1 w-full px-4 md:px-8 pb-8 flex flex-col items-center">
+<div class="relative w-full max-w-[1440px] h-[700px] bg-[#221810] rounded-2xl overflow-hidden border border-[#392f28] shadow-2xl group/map">
+<!-- Stylized Map Background -->
+<!-- Ideally this would be an SVG, using an image for visual representation as requested -->
+<div class="absolute inset-0 w-full h-full opacity-60 mix-blend-overlay pointer-events-none" data-alt="Stylized artistic dark map of Normandy France with golden contour lines and rivers" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBUqdO5VZAM7UZp8vX9arpt8vDMfly0NGwQE-A2nUMB5QNh-b1SoJJp8iStE_CtStOPyjcLxM6v_cI8Be5cfs5rd2vwV2R4mEGwSVNxJWIH8ANDG2ZMPUWyHSsU3057joOCTzZJz7J9sya0BVSdneOl2d9fDsEkQXX4ays7b326Z2YZQvsG9WCCJz_3RRaQ2Ams4IRaLzPiU9PNZjk2O5dniTiSTEGNPX5Fes3S0VlmNCek3VxZI9hQbKJkS3MdLFTlohZ9QwoQq9g'); background-size: cover; background-position: center; filter: grayscale(100%) contrast(120%) brightness(0.4);">
+</div>
+<!-- SVG Overlay for Map Lines (Abstract) -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none opacity-20" xmlns="http://www.w3.org/2000/svg">
+<path d="M100,200 Q250,150 400,250 T700,300" fill="none" stroke="#d46211" stroke-width="2"></path>
+<path d="M50,400 Q300,350 500,500 T900,450" fill="none" stroke="#d46211" stroke-dasharray="5,5" stroke-width="1"></path>
+<circle cx="20%" cy="40%" fill="url(#grad1)" opacity="0.1" r="150"></circle>
+<defs>
+<radialgradient cx="50%" cy="50%" fx="50%" fy="50%" id="grad1" r="50%">
+<stop offset="0%" style="stop-color:#d46211;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#1a1a1a;stop-opacity:0"></stop>
+</radialgradient>
+</defs>
+</svg>
+<!-- Filter Controls (Floating Top Left) -->
+<div class="absolute top-6 left-6 z-20 flex flex-col gap-3">
+<h3 class="text-white text-xs font-bold uppercase tracking-widest mb-1 opacity-70 ml-1">Filtrer par type</h3>
+<div class="flex flex-wrap gap-2 max-w-[300px]">
+<button class="flex items-center gap-2 h-9 px-4 rounded-full bg-primary text-white shadow-lg border border-primary transition-all hover:scale-105">
+<span class="material-symbols-outlined !text-[18px]">grid_view</span>
+<span class="text-xs font-bold">Tout</span>
+</button>
+<button class="flex items-center gap-2 h-9 px-4 rounded-full bg-[#1a1a1a]/80 backdrop-blur text-gray-300 border border-white/10 hover:border-primary/50 hover:text-white transition-all">
+<span class="material-symbols-outlined !text-[18px]">potted_plant</span>
+<span class="text-xs font-medium">Légumes</span>
+</button>
+<button class="flex items-center gap-2 h-9 px-4 rounded-full bg-[#1a1a1a]/80 backdrop-blur text-gray-300 border border-white/10 hover:border-primary/50 hover:text-white transition-all">
+<span class="material-symbols-outlined !text-[18px]">set_meal</span>
+<span class="text-xs font-medium">Poissons</span>
+</button>
+<button class="flex items-center gap-2 h-9 px-4 rounded-full bg-[#1a1a1a]/80 backdrop-blur text-gray-300 border border-white/10 hover:border-primary/50 hover:text-white transition-all">
+<span class="material-symbols-outlined !text-[18px]">lunch_dining</span>
+<span class="text-xs font-medium">Viandes</span>
+</button>
+<button class="flex items-center gap-2 h-9 px-4 rounded-full bg-[#1a1a1a]/80 backdrop-blur text-gray-300 border border-white/10 hover:border-primary/50 hover:text-white transition-all">
+<span class="material-symbols-outlined !text-[18px]">local_pizza</span>
+<span class="text-xs font-medium">Fromages</span>
+</button>
+</div>
+</div>
+<!-- Map Pins -->
+<!-- Pin 1: Ferme de Bray (Active) -->
+<div class="absolute top-[35%] left-[65%] z-20 group/pin">
+<button class="relative flex items-center justify-center size-12 rounded-full bg-[#1a1a1a] border-2 border-primary text-primary shadow-[0_0_20px_rgba(212,98,17,0.4)] transition-transform hover:scale-110 z-10">
+<span class="material-symbols-outlined !text-[24px]">agriculture</span>
+</button>
+<div class="absolute inset-0 rounded-full bg-primary/30 animate-ping"></div>
+<!-- Tooltip for hover state logic (simulated selected state below) -->
+<div class="absolute top-14 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black/80 px-3 py-1 rounded text-xs font-bold text-white opacity-0 group-hover/pin:opacity-100 transition-opacity pointer-events-none">
+                        Ferme de Bray
+                    </div>
+</div>
+<!-- Pin 2: Pêcheurs de Fécamp -->
+<div class="absolute top-[20%] left-[30%] z-10 group/pin">
+<button class="relative flex items-center justify-center size-10 rounded-full bg-[#1a1a1a] border border-white/30 text-white hover:bg-primary hover:border-primary transition-colors duration-300 shadow-lg">
+<span class="material-symbols-outlined !text-[20px]">sailing</span>
+</button>
+<div class="absolute top-12 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black/80 px-3 py-1 rounded text-xs font-bold text-white opacity-0 group-hover/pin:opacity-100 transition-opacity pointer-events-none">
+                        Pêcheurs de Fécamp
+                    </div>
+</div>
+<!-- Pin 3: Maraîcher de la Vallée -->
+<div class="absolute bottom-[40%] right-[25%] z-10 group/pin">
+<button class="relative flex items-center justify-center size-10 rounded-full bg-[#1a1a1a] border border-white/30 text-white hover:bg-primary hover:border-primary transition-colors duration-300 shadow-lg">
+<span class="material-symbols-outlined !text-[20px]">eco</span>
+</button>
+<div class="absolute top-12 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black/80 px-3 py-1 rounded text-xs font-bold text-white opacity-0 group-hover/pin:opacity-100 transition-opacity pointer-events-none">
+                        Maraîcher de la Vallée
+                    </div>
+</div>
+<!-- Pin 4: Vergers de Normandie -->
+<div class="absolute top-[45%] left-[45%] z-10 group/pin">
+<button class="relative flex items-center justify-center size-10 rounded-full bg-[#1a1a1a] border border-white/30 text-white hover:bg-primary hover:border-primary transition-colors duration-300 shadow-lg">
+<span class="material-symbols-outlined !text-[20px]">nutrition</span>
+</button>
+<div class="absolute top-12 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black/80 px-3 py-1 rounded text-xs font-bold text-white opacity-0 group-hover/pin:opacity-100 transition-opacity pointer-events-none">
+                        Vergers de Normandie
+                    </div>
+</div>
+<!-- Producer Spotlight Card (Simulated "Active" State for Ferme de Bray) -->
+<div class="absolute top-6 right-6 bottom-6 w-full max-w-[360px] bg-[#1a1a1a]/95 backdrop-blur-xl border border-[#392f28] rounded-xl shadow-2xl p-0 flex flex-col overflow-hidden animate-[slideIn_0.5s_ease-out] z-30">
+<!-- Card Image -->
+<div class="h-48 w-full relative">
+<div class="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] to-transparent z-10"></div>
+<div class="w-full h-full bg-cover bg-center" data-alt="Close up of artisanal cheese aging in a cellar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBfCqRjVwckodImQsYkiOLDAqNsWDT0Wjweawk76qCzeIaGN7569UOBjpLwbw8Bkz32uQkaZqVUT8Lo-LZWohFK2CKlt8Aikzv3IZT2sKW27sJHK8DmD32adSSXNSkmeKRFMsrcoClN8-5JFwqtln_IAarUU3jR7gqECELizl29c62VC_wKhPrnDouUH7t-Rcf1t1TEIzsF_K8zWmSVTyK2a6ajkLnV-rvoB1xAaXNPb8z5HFl9JDSf7c3gzaA90-5O50FzZ2UUIxU');">
+</div>
+<div class="absolute top-4 right-4 z-20">
+<button class="size-8 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/80">
+<span class="material-symbols-outlined !text-[20px]">close</span>
+</button>
+</div>
+<div class="absolute bottom-4 left-4 z-20">
+<span class="bg-primary text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Fromages AOP</span>
+</div>
+</div>
+<!-- Card Content -->
+<div class="p-6 flex flex-col gap-4 flex-1 overflow-y-auto">
+<div>
+<h2 class="text-2xl font-bold text-white mb-1">Ferme de Bray</h2>
+<div class="flex items-center gap-1 text-[#b9a89d] text-sm">
+<span class="material-symbols-outlined !text-[16px]">location_on</span>
+<span>Neufchâtel-en-Bray (28km)</span>
+</div>
+</div>
+<p class="text-sm text-gray-400 leading-relaxed">
+                            Depuis 4 générations, la famille Dubois affine le Cœur de Neufchâtel avec passion. Leurs vaches pâturent dans les vallées humides du Pays de Bray, donnant au lait une richesse unique.
+                        </p>
+<div class="w-full h-px bg-white/10 my-1"></div>
+<div class="space-y-3">
+<h4 class="text-xs font-bold text-primary uppercase tracking-widest">À la carte ce soir</h4>
+<div class="flex gap-3 items-start">
+<div class="size-12 rounded bg-[#27201c] shrink-0 bg-cover bg-center" data-alt="Cheese platter dish" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCGDvLxktQgGwzW0z-cpqE80tWzDv3c3ZE9ol07mDyzVKVKYx2vN32vZ1AH--or1sQdT4XLbbuMws-UKCEaQ3lsfCRNjfAACsMYBXhuyLjg4_CpinlgBrbUHMcmQ8sRXWqCOeNw-do_HwBUzDKkMZd5YZT5ScWa-iM0XfKqcfzT152kEaAis3OnadWbapBVqVAPzCoel34GGyf65bIA-U-VOkpd_4hqOOjh90REz38-tjyqELChjo-5dYPzhjfhFYMXOH3Tl37Ms18');"></div>
+<div>
+<p class="text-sm font-bold text-white">L'Assiette du Berger</p>
+<p class="text-xs text-gray-500">Cœur de Neufchâtel rôti, miel de pommier.</p>
+</div>
+</div>
+<div class="flex gap-3 items-start">
+<div class="size-12 rounded bg-[#27201c] shrink-0 bg-cover bg-center" data-alt="Gourmet salad dish" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBIX8wYigdFQoJSGxIc_G6yhdlXhkk4bTbcULyGOH4N_ScfaFIYSJy4MG7BCdFnHsXK3sEFd4rnIry4RDs2q3Pk_5p_SD4oy_8FgA6ou7atiGdDUDHj2bb8wPTMXnxg_f0rfqSweaoqMgF6UL5mqhYAgRkWS_a5NL7XcN827fEujT_TQr5bLDvJQiEZCrWr0PvFBPXnjtAYnK2i7Cl6Ve2c1EzUrG4odWK6DKgbZpTLf4A-2mV8rMrputwzoiyyrUpcPxCCt9sgXzE');"></div>
+<div>
+<p class="text-sm font-bold text-white">Salade Brayonne</p>
+<p class="text-xs text-gray-500">Pommes, noix, dés de fromage frais.</p>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-4">
+<button class="w-full h-10 flex items-center justify-center gap-2 rounded-lg border border-white/20 hover:bg-white/5 text-sm font-medium transition-colors">
+<span>Voir le reportage complet</span>
+<span class="material-symbols-outlined !text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Map Legend / Controls Bottom Left -->
+<div class="absolute bottom-6 left-6 z-20 flex flex-col gap-2 pointer-events-none">
+<div class="bg-black/60 backdrop-blur px-3 py-1.5 rounded-lg border border-white/10 flex items-center gap-2 w-fit">
+<span class="size-2 rounded-full bg-primary animate-pulse"></span>
+<span class="text-[10px] text-gray-300 uppercase tracking-wider font-bold">Données en temps réel</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Product Categories / Scroll Links -->
+<section class="w-full max-w-[1440px] mx-auto px-6 lg:px-20 py-12">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<a class="group relative overflow-hidden rounded-xl aspect-[4/3] flex items-end p-6 border border-[#392f28] hover:border-primary/50 transition-colors" href="#">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Fresh organic vegetables basket dark mood" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCiYZUTTh1F3FkxNcgpVwl2pN6FAr6LSlEQobgaXkic0pCLkAeZKJefCc6qnu8cihyzkkb9lQfcbsu2PsFZ2EzDAS3vRdkQP-ccsUGS4IXGg6g1Mtxfj5WtZMqbCNEE0nIL-khyzIUnzcoloqMg6M-tTYhU2U1_VSVISvadVu8uw46H9bIQ_tcUGMPNaXYFUXmQbUs4so8iAjPrjw6pWeHbpLamVQ_XNzURXWjvidLyVkHN0LPsoIYwO-HSHgTjY7RCX7iAuwzkHxM');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+<div class="relative z-10">
+<h3 class="text-white text-lg font-bold mb-1">Le Potager</h3>
+<p class="text-primary text-xs font-medium opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">5 Producteurs</p>
+</div>
+</a>
+<a class="group relative overflow-hidden rounded-xl aspect-[4/3] flex items-end p-6 border border-[#392f28] hover:border-primary/50 transition-colors" href="#">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Fresh fish on ice market" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDy0LEY_fJCc-I3lMcXAOzUewvc2V5PVl9c8aAZ4EadJ04zSePIjAczui62eUxCrvRbLEo_Gxyo3e4LMR7rLlKWoBvusEVlq_q6zzxQCt7VcacDpPOvdlwpAn709PTjwz57dp26zrvaFg9VuW9nRUZq4HXzjHEbmTt46a_8ns7hvEUEm5UZxn9eiByoy_rP62otWWYfd401TAysmOHeWRkLVODB-CQCxp7TB-UT8wkG7Kh7GFM2WNuQUjiEUa7-I0BuRRs_es0r5JE');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+<div class="relative z-10">
+<h3 class="text-white text-lg font-bold mb-1">La Mer</h3>
+<p class="text-primary text-xs font-medium opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">3 Pêcheurs</p>
+</div>
+</a>
+<a class="group relative overflow-hidden rounded-xl aspect-[4/3] flex items-end p-6 border border-[#392f28] hover:border-primary/50 transition-colors" href="#">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Raw meat steak dark background" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDdiEsdkyNCQEriQOUeCK2yJHgdgGZQ2BvpowCRiV1CC_zqwtTNns32naH1_bTeO_OAYiKbw_7_91iiVSTOkZUAWSQ7Q2q2XxelE7Ok2-nx9z9ssYcxEbWWrZFHR7V_u_stWA13rv14rCwlSJ71oVIufD2cd2I4FjjW9qzrWSzEGqoHSArLNOHxez6WDLN4UX6RNmd1Rf0vL5LdObNC9FwC_MM_wUvJ5OLVGj91ftiDGHcLjaO9TMCRYQLq7ygvNH7SPREQOYW4gfA');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+<div class="relative z-10">
+<h3 class="text-white text-lg font-bold mb-1">L'Élevage</h3>
+<p class="text-primary text-xs font-medium opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">4 Éleveurs</p>
+</div>
+</a>
+<a class="group relative overflow-hidden rounded-xl aspect-[4/3] flex items-end p-6 border border-[#392f28] hover:border-primary/50 transition-colors" href="#">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Wine cellar barrels" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDywPc3xAN40Yjo6UOt3GcUEKmjc2YF4_MIiuzYcVX3QmGkB3ZvfLts4DKGlL9kxZrqOfPmpxvfHPdeS1E10TE_UxIA1Tm7YcN7tT8jGe9ZIL0J0hrIg-eDUx8pOUwNeyX7ixWeUuBKYmsqH97xx-U1QsOV-jd9ryz7CxDI0YrYrAPLObtIakUm-s0oJAFRFvHgx5pjqrn3aY1L7VCt_H2qoHpLZ2j__n-7om3rXyp67MrTd3RBYW-iHqoBZZOjETsKxQjSB-G2QBc');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+<div class="relative z-10">
+<h3 class="text-white text-lg font-bold mb-1">La Cave</h3>
+<p class="text-primary text-xs font-medium opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">8 Domaines</p>
+</div>
+</a>
+</div>
+</section>
+<!-- Footer -->
+<footer class="border-t border-[#392f28] bg-[#151515] mt-auto">
+<div class="max-w-[1440px] mx-auto px-6 lg:px-20 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">local_dining</span>
+<span class="text-lg font-bold tracking-widest text-white">TANDEM</span>
+</div>
+<div class="flex flex-col md:flex-row items-center gap-6 md:gap-12 text-sm text-gray-400">
+<a class="hover:text-primary transition-colors" href="#">Mentions Légales</a>
+<a class="hover:text-primary transition-colors" href="#">Politique de Confidentialité</a>
+<span>Rouen, France</span>
+</div>
+<div class="flex items-center gap-4">
+<a class="size-10 rounded-full bg-[#27201c] flex items-center justify-center text-white hover:bg-primary transition-colors" href="#">
+<!-- Using material symbols as social icons placeholders -->
+<span class="material-symbols-outlined text-[20px]">photo_camera</span>
+</a>
+<a class="size-10 rounded-full bg-[#27201c] flex items-center justify-center text-white hover:bg-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">alternate_email</span>
+</a>
+</div>
+</div>
+</footer>
+</main>
+</body></html>
