@@ -25,7 +25,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 
 
 export const metadata: Metadata = {
-  title: "Tandem Rouen - Accueil Haute Gastronomie",
+  title: "Le mojo Rouen - Accueil Haute Gastronomie",
   description: "Bistronomie Connectée & Vins d'Auteurs",
 };
 

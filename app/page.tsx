@@ -183,7 +183,7 @@ export default function Home() {
               </h3>
             </div>
             <p className="text-white/70 text-lg leading-relaxed font-sans">
-              Au-delà de l&apos;assiette, Tandem est une histoire de complicité.
+              Au-delà de l&apos;assiette, Le mojo Rouen est une histoire de complicité.
               Notre Chef et notre Sommelier orchestrent un ballet sensoriel
               unique, où la précision du geste culinaire rencontre
               l&apos;intuition du service. Laissez-vous guider dans une
@@ -296,7 +296,7 @@ export default function Home() {
         <div className="bg-surface-dark border border-white/10 p-4 rounded-2xl rounded-br-none shadow-2xl max-w-[280px] pointer-events-auto transform transition-all hover:scale-105 origin-bottom-right">
           <div className="flex items-center gap-2 mb-2">
             <div className="size-2 bg-green-500 rounded-full animate-pulse"></div>
-            <span className="text-xs font-bold text-white/80 uppercase tracking-wide">Assistant Tandem</span>
+            <span className="text-xs font-bold text-white/80 uppercase tracking-wide">Assistant Le mojo Rouen</span>
           </div>
           <p className="text-sm text-white leading-snug">
             Bonjour, une question sur les allergènes ou besoin d&apos;une table au calme ?

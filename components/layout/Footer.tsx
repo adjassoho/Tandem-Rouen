@@ -9,7 +9,7 @@ export function Footer() {
                     <div className="col-span-1 md:col-span-1">
                         <div className="flex items-center gap-2 mb-6">
                             <span className="material-symbols-outlined text-primary text-2xl">restaurant_menu</span>
-                            <span className="text-xl font-bold tracking-widest text-white uppercase">Tandem</span>
+                            <span className="text-xl font-bold tracking-widest text-white uppercase">Le mojo Rouen</span>
                         </div>
                         <p className="text-white/50 text-sm leading-relaxed">
                             Bistronomie moderne et vins d'auteurs. L'alliance de la tradition et de l'innovation au service du goût.
@@ -33,15 +33,15 @@ export function Footer() {
                         <ul className="space-y-3">
                             <li className="flex items-start gap-3 text-white/60 text-sm">
                                 <span className="material-symbols-outlined text-base mt-0.5">location_on</span>
-                                <span>11 Rue Damiette, <br />76000 Rouen</span>
+                                <span>28 rue des bons enfants,<br/>Rouen, France 76000 </span>
                             </li>
                             <li className="flex items-center gap-3 text-white/60 text-sm">
                                 <span className="material-symbols-outlined text-base">call</span>
-                                <span>+33 2 35 00 00 00</span>
+                                <span>+33 2 35 88 59 55</span>
                             </li>
                             <li className="flex items-center gap-3 text-white/60 text-sm">
                                 <span className="material-symbols-outlined text-base">mail</span>
-                                <span>bonjour@tandem-rouen.fr</span>
+                                <span>claem@orange.fr</span>
                             </li>
                         </ul>
                     </div>
@@ -50,19 +50,19 @@ export function Footer() {
                     <div>
                         <h4 className="text-white font-bold uppercase tracking-widest text-xs mb-6">Horaires</h4>
                         <ul className="space-y-2 text-sm text-white/60">
-                            <li className="flex justify-between"><span>Lun - Mar</span> <span>Fermé</span></li>
-                            <li className="flex justify-between"><span>Mer - Sam</span> <span>12h - 14h / 19h - 22h</span></li>
-                            <li className="flex justify-between"><span>Dimanche</span> <span>12h - 15h</span></li>
+                            <li className="flex justify-between"><span>Lun - Dim</span> <span>Fermé</span></li>
+                            <li className="flex justify-between"><span>Mar - Mer - Jeu</span> <span>12h - 14h / 19h - 21h</span></li>
+                            <li className="flex justify-between"><span>Ven - Sam</span> <span>12h - 14h / 19h - 21h30</span></li>
                         </ul>
                     </div>
                 </div>
 
                 {/* Bottom */}
                 <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p className="text-white/30 text-xs">© 2026 Tandem Rouen. Tous droits réservés.</p>
+                    <p className="text-white/30 text-xs">© 2026 Le mojo Rouen. Tous droits réservés.</p>
                     <div className="flex gap-4">
-                        <Link className="text-white/40 hover:text-white transition-colors" href="#">Instagram</Link>
-                        <Link className="text-white/40 hover:text-white transition-colors" href="#">Facebook</Link>
+                        <Link className="text-white/40 hover:text-white transition-colors" href="https://www.instagram.com/lemojorouen/" target="_blank" rel="noopener noreferrer">Instagram</Link>
+                        <Link className="text-white/40 hover:text-white transition-colors" href="https://web.facebook.com/profile.php?id=61555378817893&ref=NONE_xav_ig_profile_page_web" target="_blank" rel="noopener noreferrer">Facebook</Link>
                     </div>
                 </div>
             </div>

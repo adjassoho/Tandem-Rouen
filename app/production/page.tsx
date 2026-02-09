@@ -20,7 +20,7 @@ export default function ProductionPage() {
                         Au Cœur du <span className="text-primary">Terroir Normand</span>
                     </h1>
                     <p className="text-gray-400 text-lg leading-relaxed max-w-2xl mx-auto">
-                        Une cuisine sincère commence par des produits d&apos;exception. Nous tissons des liens directs avec les artisans qui façonnent l&apos;identité culinaire de Tandem, privilégiant le circuit court et le respect des saisons.
+                        Une cuisine sincère commence par des produits d&apos;exception. Nous tissons des liens directs avec les artisans qui façonnent l&apos;identité culinaire de Le mojo Rouen, privilégiant le circuit court et le respect des saisons.
                     </p>
                     {/* AI Traceability Badge */}
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/20 bg-primary/5 shadow-lg backdrop-blur-sm mt-4">

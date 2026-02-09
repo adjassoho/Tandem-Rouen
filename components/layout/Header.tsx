@@ -38,7 +38,7 @@ export function Header() {
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2 group">
                     <span className="material-symbols-outlined text-primary text-3xl transition-transform group-hover:rotate-12">restaurant_menu</span>
-                    <h1 className="text-2xl font-bold tracking-widest text-white uppercase group-hover:text-primary transition-colors">Tandem</h1>
+                    <h1 className="text-2xl font-bold tracking-widest text-white uppercase group-hover:text-primary transition-colors">Le mojo Rouen</h1>
                 </Link>
 
                 {/* Desktop Nav */}
